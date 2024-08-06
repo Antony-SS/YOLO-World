@@ -34,7 +34,9 @@ RUN pip3 install --upgrade pip \
 COPY . /yolo
 WORKDIR /yolo
 
-RUN pip3 install -e .
+RUN pip3 install -e . --no-deps
+
+RUN apt-get -y update && apt-get -y install curl
 
 RUN curl -o weights/$WEIGHT -L https://huggingface.co/wondervictor/YOLO-World/resolve/main/$WEIGHT
 
