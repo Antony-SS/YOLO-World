@@ -1,6 +1,6 @@
 version: "3"
 services:
-  torch_vrfkp_training:
+  yolo:
     build:
       context: "."
       dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
       - QT_DEBUG_PLUGINS=1
     container_name: yolo
     volumes:
-      - $HOME/robot_dev/Yolo-World/:/yolo
+      - $HOME/robot_dev/YOLO-World:/yolo
     deploy:
       resources:
         reservations:

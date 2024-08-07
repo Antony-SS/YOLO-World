@@ -36,14 +36,14 @@ RUN pip3 install --upgrade pip \
         mmcv-lite \
     && mim install mmcv==2.0.0
 
-COPY . /yolo
+# COPY . /yolo
 WORKDIR /yolo
 
-RUN pip3 install -e . --no-deps
+# RUN pip3 install -e . --no-deps
 
-RUN apt-get -y update && apt-get -y install curl
+# RUN apt-get -y update && apt-get -y install curl
 
-RUN curl -o weights/$WEIGHT -L https://huggingface.co/wondervictor/YOLO-World/resolve/main/$WEIGHT
+# RUN curl -o weights/$WEIGHT -L https://huggingface.co/wondervictor/YOLO-World/resolve/main/$WEIGHT
 
 ENV PYTHONPATH=$PYTHONPATH:/yolo:/yolo_world.egg-info
 
