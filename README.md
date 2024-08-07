@@ -130,6 +130,12 @@ We provide the pre-training logs of `YOLO-World-v2`. Due to the unexpected error
 
 ## Getting started
 
+# UPDATED INSTRUCTIONS TO RUN
+
+---
+
+See `/docs/Earthsense_Running_Instructions.md`
+
 ### 1. Installation
 
 YOLO-World is developed based on `torch==1.11.0` `mmyolo==0.6.0` and `mmdetection==3.0.0`. Check more details about `requirements` and `mmcv` in [docs/installation](./docs/installation.md).
