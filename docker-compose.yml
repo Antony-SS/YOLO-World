@@ -1,0 +1,21 @@
+version: "3"
+services:
+  torch_vrfkp_training:
+    build:
+      context: "."
+      dockerfile: Dockerfile
+    shm_size: '50gb'
+    command: bash
+    stdin_open: true
+    environment:
+      - DISPLAY=host.docker.internal:0.0
+      - QT_DEBUG_PLUGINS=1
+    container_name: yolo
+    volumes:
+      - $HOME/robot_dev/Yolo-World/:/yolo
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu,compute,video,graphics,utility,display]
