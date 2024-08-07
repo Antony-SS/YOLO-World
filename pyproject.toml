@@ -33,7 +33,7 @@ dependencies = [
     "torchvision>=0.16.2",
     "transformers",
     "tokenizers",
-    "numpy",
+    "numpy<2",
     "opencv-python",
     "supervision==0.19.0",
     "openmim",
