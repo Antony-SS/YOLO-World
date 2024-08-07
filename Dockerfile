@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu22.04 as base
 
-# ARG MODEL="yolo_world_l_dual_vlpan_l2norm_2e-3_100e_4x8gpus_obj365v1_goldg_train_lvis_minival.py"
-# ARG WEIGHT="yolo_world_l_clip_base_dual_vlpan_2e-3adamw_32xb16_100e_o365_goldg_train_pretrained-0e566235.pth"
+ARG MODEL="yolo_world_l_dual_vlpan_l2norm_2e-3_100e_4x8gpus_obj365v1_goldg_train_lvis_minival.py"
+ARG WEIGHT="yolo_world_l_clip_base_dual_vlpan_2e-3adamw_32xb16_100e_o365_goldg_train_pretrained-0e566235.pth"
 
 ENV FORCE_CUDA="1"
 ENV MMCV_WITH_OPS=1
@@ -36,16 +36,18 @@ RUN pip3 install --upgrade pip \
         mmcv-lite \
     && mim install mmcv==2.0.0
 
-# COPY . /yolo
+COPY ./pyproject.toml /yolo/pyproject.toml
 WORKDIR /yolo
 
-# RUN pip3 install -e . --no-deps
+RUN pip3 install -e . --no-deps
 
-# RUN apt-get -y update && apt-get -y install curl
+RUN apt-get -y update && apt-get -y install curl
 
-# RUN curl -o weights/$WEIGHT -L https://huggingface.co/wondervictor/YOLO-World/resolve/main/$WEIGHT
+RUN mkdir -p /yolo/weights
+
+RUN curl -o weights/$WEIGHT -L https://huggingface.co/wondervictor/YOLO-World/resolve/main/$WEIGHT
 
 ENV PYTHONPATH=$PYTHONPATH:/yolo:/yolo_world.egg-info
 
-WORKDIR /yolo
+
 
